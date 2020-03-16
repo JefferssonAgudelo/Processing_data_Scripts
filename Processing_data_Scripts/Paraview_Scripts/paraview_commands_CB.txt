@@ -1,0 +1,89 @@
+%------- macroscopic quantities considering the ratio mi2me = 40 ------------
+
+V_ion = vx_i*iHat + vy_i*jHat + vz_i*kHat ;    sqrt(vx_i*vx_i + vy_i*vy_i  + vz_i*vz_i )
+
+V_elec = vx_e*iHat + vy_e*jHat + vz_e*kHat ;  sqrt(vx_e*vx_e + vy_e*vy_e  + vz_e*vz_e )
+
+E_field = ex*iHat + ey*jHat + ez*kHat
+
+B_field = hx*iHat + hy*jHat + hz*kHat
+
+Current = jx*iHat + jy*jHat + jz*kHat
+
+U =  iHat*(40*n_i*vx_i+n_e*vx_e)/(n_e + 40*n_i) + jHat*(40*n_i*vy_i+n_e*vy_e)/(n_e + 40*n_i) + kHat*(40*n_i*vz_i+n_e*vz_e)/(n_e + 40*n_i)
+
+%J2 = (iHat*(n_i*vx_i-n_e*vx_e) + jHat*(n_i*vy_i-n_e*vy_e) + kHat*(40*n_i*vz_i-n_e*vz_e))
+
+
+
+%------- Parallel and perpendicular components of the Electric field and the current to the local magnetic field ------------
+
+E_par = (ex*hx + ey*hy + ez*hz)/sqrt(hx*hx+hy*hy+hz*hz) 
+
+Theta_E = acos((ex*hx + ey*hy + ez*hz)/(sqrt(ex*ex+ey*ey+ez*ez)*sqrt(hx*hx+hy*hy+hz*hz)))
+
+E_perp = sqrt(ex*ex+ey*ey+ez*ez)*sin(Theta_E)
+
+J_par = (jx*hx + jy*hy + jz*hz)/sqrt(hx*hx+hy*hy+hz*hz)
+
+Theta_J = acos((jx*hx + jy*hy + jz*hz)/(sqrt(jx*jx+jy*jy+jz*jz)*sqrt(hx*hx+hy*hy+hz*hz)))
+
+J_perp = sqrt(jx*jx+jy*jy+jz*jz)*sin(Theta_J)
+
+Vi_par = (vx_i*hx + vy_i*hy + vz_i*hz)/sqrt(hx*hx+hy*hy+hz*hz)
+Ve_par = (vx_e*hx + vy_e*hy + vz_e*hz)/sqrt(hx*hx+hy*hy+hz*hz)
+Theta_Vi = acos((vx_i*hx + vy_i*hy + vz_i*hz)/(sqrt(vx_i*vx_i+vy_i*vy_i+vz_i*vz_i)*sqrt(hx*hx+hy*hy+hz*hz)))
+Vi_perp = sqrt(vx_i*vx_i + vy_i*vy_i + vz_i*vz_i)*sin(Theta_E)
+
+Vi_par = 
+Ve_par = (vx_e*hx + vy_e*hy + vz_e*hz)/sqrt(hx*hx+hy*hy+hz*hz)
+
+
+
+%------- Electric field due to flow of particles into a magnetic field ------------
+
+E_m_E_UxB = iHat*(ex-(((40*n_i*vy_i+n_e*vy_e)/(n_e + 40*n_i))*hz-((40*n_i*vz_i+n_e*vz_e)/(n_e + 40*n_i))*hy)) + jHat*(ey-(((40*n_i*vz_i+n_e*vz_e)/(n_e + 40*n_i))*hx-((40*n_i*vx_i+n_e*vx_e)/(n_e + 40*n_i))*hz)) + kHat*(ez-(((40*n_i*vx_i+n_e*vx_e)/(n_e + 40*n_i))*hy-((40*n_i*vy_i+n_e*vy_e)/(n_e + 40*n_i))*hx)) 
+
+E_m_E_VixB = iHat*(ex-(vy_i*hz-vz_i*hy)) + jHat*(ey-(vz_i*hx-vx_i*hz)) + kHat*(ez-(vx_i*hy-vy_i*hx)) 
+
+E_m_E_VexB = iHat*(ex-(vy_e*hz-vz_e*hy)) + jHat*(ey-(vz_e*hx-vx_e*hz)) + kHat*(ez-(vx_e*hy-vy_e*hx)) 
+
+
+
+%------- Currents perpendicular to the local magnetic field for U, vi and ve ------------
+
+J_perp_2_i = (jx*(vy_i*hz-vz_i*hy) + jy*(vz_i*hx-vx_i*hz) + jz*(vx_i*hy-vy_i*hx))/sqrt((vy_i*hz-vz_i*hy)^2 + (vz_i*hx-vx_i*hz)^2 + (vx_i*hy-vy_i*hx)^2) 
+
+J_perp_2_e = (jx*(vy_e*hz-vz_e*hy) + jy*(vz_e*hx-vx_e*hz) + jz*(vx_e*hy-vy_e*hx))/sqrt((vy_e*hz-vz_e*hy)^2 + (vz_e*hx-vx_e*hz)^2 + (vx_e*hy-vy_e*hx)^2) 
+
+J_perp_2 =  (jx*(((40*n_i*vy_i+n_e*vy_e)/(n_e + 40*n_i))*hz-((40*n_i*vz_i+n_e*vz_e)/(n_e + 40*n_i))*hy) + jy*(((40*n_i*vz_i+n_e*vz_e)/(n_e + 40*n_i))*hx-((40*n_i*vx_i+n_e*vx_e)/(n_e + 40*n_i))*hz) + jz*(((40*n_i*vx_i+n_e*vx_e)/(n_e + 40*n_i))*hy-((40*n_i*vy_i+n_e*vy_e)/(n_e + 40*n_i))*hx))/sqrt((((40*n_i*vy_i+n_e*vy_e)/(n_e + 40*n_i))*hz-((40*n_i*vz_i+n_e*vz_e)/(n_e + 40*n_i))*hy)^2 + (((40*n_i*vz_i+n_e*vz_e)/(n_e + 40*n_i))*hx-((40*n_i*vx_i+n_e*vx_e)/(n_e + 40*n_i))*hz)^2 + (((40*n_i*vx_i+n_e*vx_e)/(n_e + 40*n_i))*hy-((40*n_i*vy_i+n_e*vy_e)/(n_e + 40*n_i))*hx)^2) 
+
+
+%------- Velocities of the without the electric drift ------------
+
+Vi_m_ExB2 = iHat*(vx_i-(ey*hz-ez*hy)/(hx*hx + hy*hy + hz*hz)) + jHat*(vy_i-(ez*hx-ex*hz)/(hx*hx + hy*hy + hz*hz)) + kHat*(vz_i-(ex*hy-ey*hx)/(hx*hx + hy*hy + hz*hz))
+
+Ve_m_ExB2 = iHat*(vx_e-(ey*hz-ez*hy)/(hx*hx + hy*hy + hz*hz)) + jHat*(vy_e-(ez*hx-ex*hz)/(hx*hx + hy*hy + hz*hz)) + kHat*(vz_e-(ex*hy-ey*hx)/(hx*hx + hy*hy + hz*hz))
+
+U_m_ExB_B2 = iHat*((40*n_i*vx_i+n_e*vx_e)/(n_e + 40*n_i)-(ey*hz-ez*hy)/(hx*hx + hy*hy + hz*hz)) + jHat*((40*n_i*vy_i+n_e*vy_e)/(n_e + 40*n_i)-(ez*hx-ex*hz)/(hx*hx + hy*hy + hz*hz)) + kHat*((40*n_i*vz_i+n_e*vz_e)/(n_e + 40*n_i)-(ex*hy-ey*hx)/(hx*hx + hy*hy + hz*hz))
+
+
+
+Show wether the current is carried by electron or ions (the current is carried by electrons!)
+
+
+
+############### Moving frames correction #########################################################
+
+De_mv = jx*(ex + vy_e*hz - vz_e*hy) + jy*(ey + vz_e*hx - vx_e*hz) + jz*(ez + vx_e*hy - vy_e*hx)  - (n_i-n_e)*(vx_e*ex + vy_e*ey + vz_e*ez)
+Di_mv = jx*(ex + vy_i*hz - vz_i*hy) + jy*(ey + vz_i*hx - vx_i*hz) + jz*(ez + vx_i*hy - vy_i*hx)  - (n_i-n_e)*(vx_i*ex + vy_i*ey + vz_i*ez)
+
+############################# calculate curls #####################################################
+
+Dvx_i
+
+iHat*(Dvz_i_Y - Dvy_i_Z) + jHat*(Dvx_i_Z - Dvz_i_X) + kHat*(Dvy_i_X - Dvx_i_Y)
+
+iHat*(Dvz_e_Y - Dvy_e_Z) + jHat*(Dvx_e_Z - Dvz_e_X) + kHat*(Dvy_e_X - Dvx_e_Y)
+
+iHat*(Dhz_Y - Dhy_Z) + jHat*(Dhx_Z - Dhz_X) + kHat*(Dhy_X - Dhx_Y)

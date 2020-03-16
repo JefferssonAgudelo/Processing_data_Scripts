@@ -1,0 +1,51 @@
+ 
+convert -delay 20 -loop 0 *.jpg myimage.gif
+
+# To make it in order
+convert -resize 768x576 -delay 20 -loop 0 `ls -v` myimage.gif
+
+
+convert -delay 30 -loop 0 `ls -v` sprite_BJ.gif
+
+convert -delay 30 -loop 0 `ls -v` mxmy_J3.gif
+
+convert -delay 30 -loop 0 `ls -v` Bzero_mxmy_J3_mov.gif
+#-------------------------------------------------
+To slow downd the speed
+
+identify -verbose mzmx.gif | grep Delay
+convert -delay 30x100 mzmx.gif mzmx_slow.gif
+
+
+
+#------------------------------------------------------
+Put the three plots in the same frame
+
+
+mxmy
+
+
+convert mxmy/Blines_mxmy_1.png mzmx/Blines_mzmx_1.png mzmy/Blines_mzmy_1.png -append Three/Sprite_1.png
+
+convert mxmy_J/Blines_J_mxmy_1.png mzmx_J/Blines_J_mzmx_1.png mzmy_J/Blines_J_mzmy_1.png -append Three/Sprite_BJ_1.png
+
+
+# Blines J iso 
+convert Blines_J1_isosurface/mxmy_J/Blines_J_mxmy_1.png Bzero_current_mov_isosurfaces/BZero_mxmy_J3_mov/Bzero_J3_mxmy_1.png -append Composed_images/Blines_J_B0_mxmy/Bline_J_B0_1.png
+convert Blines_J1_isosurface/mzmx_J/Blines_J_mzmx_1.png Bzero_current_mov_isosurfaces/BZero_mzmx_J3_mov/Bzero_J3_mzmx_1.png -append Composed_images/Blines_J_B0/Bline_J_B0_1.png
+
+
+# Bper Jz
+convert Jz_volume/jz_mxmy/Jz_mxmy_1.png Bper_surface/Bper_mxmy/Bper_mxmy_1.png -append Composed_images/Bper_Jz/Bper_Jz_mxmy_1.png
+convert Jz_volume/Jz_mzmx/Jz_mzmx_1.png Bper_surface/Bper_mzmx/Bper_mzmx_1.png -append Composed_images/Bper_Jz_mzmx/Bper_Jz_mzmx_1.png
+
+for 
+
+
+Notes about what I see in the gif animations
+
+1) Althoug the boundary conditions are periodic the current structures and current sheets are not infinite. In fact, they are elongated and thin so they might have an aspec ratio consistent with critical balance
+
+2) The current sheets fade away in time 
+
+3) the nonlinearity start at the beginning but apparently. It ceases with time. 

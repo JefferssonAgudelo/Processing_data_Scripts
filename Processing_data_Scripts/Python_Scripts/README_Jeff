@@ -1,0 +1,34 @@
+# Jeffersson Agudelo, MSSL/UCL PhD Student,11/11/19
+###########################################################################################################
+This direcroty contains the output of the following simulation: 
+
+We use the Plasma Simulation Code (Germaschewski et al., 2016), to simulate the collision of 8
+counter propagating Alfv ́en waves, four parallel and four antiparallel to the magnetic field. All waves
+have random phases and fulfill the critical balance theory by Goldreich and Sridhar (1995) . 
+
+
+km,par ρi = C (|km,⊥|ρi)^(2/3)
+
+or in terms of di
+
+km,par di = Cβ^(−1/6) (|km,⊥ |di )^(2/3)
+ .
+C= 10^(-4/3) 
+ 
+The simulation box size is Lx × Ly × Lz = 24di × 24di × 125di and the spatial resolution is ∆x = ∆y = ∆z = 0.06di ,
+where di is the ion inertial length and is di = 1. The mass ratio is mi/me = 100. The plasma beta
+for both ions and electrons is βi = βe = 1. We use Isotropic temperature for both ion and electrons.
+We use equal number of particles per cell for ions and electrons ne = ni = 100. The background
+magnetic field is B0 = B0z ˆ . We use B0 = VA/c = 0.1 in order to keep thermal velocities below the
+speed of light and avoid relativistic effects. VA is the Alfv ́en speed and c is the speed of light. The
+ion plasma frequency is ωpi = 1, the courant factor is cfl=0.98 and the time step is 0.06/ωpi. Each snapshot
+is taken every 400 steps or 24 tωpi.
+
+This run has km,par = 2π/125di and km,⊥ = 2π/6di. 
+
+The perpendicular part is already in the breakdown from inertial to kinetic range.
+
+
+These data were produced using the Data Intensice at Leicester (DIaL) fascility provided by the DiRAC project
+dp126 Identifying and Quantifying the Role of Magnetic Reconnection in Space Plasma Turbulence.   
+############################################################################################################
